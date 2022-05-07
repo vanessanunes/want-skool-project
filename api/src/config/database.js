@@ -12,7 +12,7 @@ pool.on('connect', () => {
   console.log('Base de Dados conectada com sucesso!')
 })
 
-modeule.exports = {
+module.exports = {
   query: (text, params) => pool.query(text, params)
 };
 
