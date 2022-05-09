@@ -20,11 +20,13 @@ exports.createStudent = async (req, res) => {
 };
 
 exports.listAllStudents = async (req, res) => {
+    console.log('estamos em listar estudantes..')
     try{
         const response = await db.query('SELECT * FROM student ORDER BY student_id ASC');
+        console.log(response)
         res.status(200).send(response.rows);
-        
     } catch(error){
+        console.log(error);
         res.status(500).send({
             erro: error
         });

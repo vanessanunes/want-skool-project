@@ -4,7 +4,7 @@ services:
 
   db:
     image: postgres
-    restart: always
+    restart: on-failure
     container_name: db
     ports:
       - ${POSTGRES_PORT}:5432
@@ -12,22 +12,25 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+    volumes:
+      - ./db/initdb.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    # networks:
+    #   - quero
 
   api:
-    image: node:latest
     container_name: api
-    restart: unless-stopped
+    restart: always
     build: .
-    depends_on:
+    links:
       - db
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
-      - .:/usr/src/app
-    working_dir: /usr/src/app
+      - .:/usr/nodeapp
+      - /usr/nodeapp/node_modules/
+    env_file:
+      - .env
     command: npm start
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "5"
+    # networks:
+    #   - quero

@@ -11,10 +11,10 @@ down:
 	docker-compose down
 
 build:
-	docker build -t node_skool .
+	docker-compose build
 
-hard-build:
-	docker build -t node_skool .
+restart:
+	docker-compose up -d --force-recreate api
 
-run:
-	docker run -p 3000:3000 -d node_skool
+logs:
+	docker-compose logs -f api

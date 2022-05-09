@@ -3,10 +3,9 @@ const studentController = require('../controllers/students')
 
 router.get('/', (req, res) => {
     res.status(200).send({
-        message: "Dockerzão tá como?",
+        message: "Dockerzão tá OOON!",
     });
 });
-
 
 router.get('/students', studentController.listAllStudents)
 router.get('/student/:id', studentController.findStudentById)
