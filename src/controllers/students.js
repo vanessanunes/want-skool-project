@@ -40,6 +40,7 @@ exports.findStudentById = async (req, res) => {
         res.status(200).send(response.rows);
         
     } catch(error){
+        console.log(error)
         res.status(500).send({
             erro: error
         });
@@ -67,7 +68,6 @@ exports.updateStudentById = async (req, res) => {
 exports.deleteStudentById = async (req, res) => {
     try{
         const studentId = parseInt(req.params.id);
-        
         const response = await db.query('DELETE from student WHERE student_id = $1 RETURNING student_id', [studentId]);
         res.status(200).send(response.rows);
         

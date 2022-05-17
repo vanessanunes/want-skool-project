@@ -15,6 +15,7 @@ build:
 
 restart:
 	docker-compose up -d --force-recreate api
+	# docker-compose up --build -d
 
 logs:
 	docker-compose logs -f api
