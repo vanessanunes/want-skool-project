@@ -8,8 +8,9 @@ console.log("estamos na conexão de dados")
 console.log(process.env.DATABASE_URL)
 
 const pool = new Pool({
-  host: 'localhost',
-  username: 'postgres',
+  host: 'db',
+  port: '5432',
+  user: 'postgres',
   password: '2545',
   database: 'wantskool'
 })

@@ -27,3 +27,5 @@ create table bill(
 	foreign key(enrollment_id) references enrollment(enrollment_id)
 );
 
+INSERT INTO public.student (name,cpf,birthdate,payment_method) VALUES
+	 ('Vanessa','123456677','1992-03-22','credit');

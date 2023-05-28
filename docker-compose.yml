@@ -17,19 +17,26 @@ services:
       - .env
     volumes:
       - ./db/initdb.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    networks:
+      - internal
 
   api:
     container_name: api
     restart: always
     build: .
-    links:
-      - db
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
-      - .:/usr/nodeapp
-      - /usr/nodeapp/node_modules/
+      - .:/app
     env_file:
       - .env
-    command: npm start
+    networks:
+      - default
+      - internal
 
+networks:
+  default:
+    external: true
+    name: quero-default
+  internal:
+    internal: true
