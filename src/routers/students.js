@@ -3,7 +3,7 @@ const studentController = require('../controllers/students')
 
 router.get('/', (req, res) => {
     res.status(200).send({
-        message: "Dockerzão tá OOON!",
+        message: "Dockerzão tá OOON pai!",
     });
 });
 
